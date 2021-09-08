@@ -21,7 +21,7 @@ import {
   Pressable,
   FlatList,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {borderRadius} from 'styled-system';
 
@@ -110,24 +110,12 @@ const App = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
             padding: 10,
           }}>
-           {/* <View style={{flex:1,height: 100, width: 250, backgroundColor: '#ffffff',margin:20}}>
-            <Picker
-              selectedValue={selectedValue}
-              style={{height: 100, width: 150,flex:1, backgroundColor: '#ffffff'}}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedValue(itemValue)
-              }>
-              <Picker.Item label="GET" value="GET" />
-              <Picker.Item label="POST" value="POST" />
-            </Picker>
-          </View> */}
           <Section title=" Provide an API endpoint"></Section>
           <TextInput
             style={styles.apiContainer}
             onChangeText={setApiUrl}
             value={apiurl}
           />
-
           <View
             style={{
               display: 'flex',
@@ -150,11 +138,9 @@ const App = () => {
               />
             </Section>
           </View>
-
           <Pressable style={styles.button} onPress={hitAPI}>
             <Text style={styles.text}>Fetch</Text>
           </Pressable>
-
           <View
             style={{
               margin: 14,
@@ -163,17 +149,7 @@ const App = () => {
               justifyContent: 'flex-start',
             }}>
             <SafeAreaView style={{flex: 1}}>
-              {/* <Text style={styles.text}>Get Data: </Text>
-              {typeof data == 'string' ? (
-                <Text style={{color: '#ffffff'}}>{data}</Text>
-              ) : (
-                data.map((item, index) => (
-                  <Text key={index} style={{color: '#ffffff'}}>
-                    {item.key} : {item.val}
-                  </Text>
-                ))
-              )} */}
-              {/* <Text style={styles.text}>Post Data: </Text> */}
+             
               {typeof data == 'string' ? (
                 <Text style={{color: '#ffffff'}}>{data}</Text>
               ) : (
