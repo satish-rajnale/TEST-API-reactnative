@@ -4,10 +4,6 @@
         "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnative_libraries_newappscreen_components_logo.png.flat",
-        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnative_libraries_newappscreen_components_logo.png"
-    },
-    {
         "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },

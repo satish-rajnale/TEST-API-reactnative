@@ -6,61 +6,32 @@
  * @flow strict-local
  */
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
   TextInput,
   KeyboardAvoidingView,
-  Button,
   Pressable,
-  FlatList,
 } from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {borderRadius} from 'styled-system';
-
 const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.highlight,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-
+      <Text style={ styles.highlight }> {title}</Text>
       <View style={{width: 160}}>{children}</View>
     </View>
   );
 };
-
 const App = () => {
   const [apiurl, setApiUrl] = useState('http://192.168.1.106:8080/tshirt/1');
   const [keys, setKeys] = useState('red');
   const [value, setValue] = useState('13');
   const [data, setData] = useState('NULL');
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   const hitAPI = async () => {
       try {
-        await axios
-          .post(apiurl, {
-            reqKey: keys,
-            reqVal: value,
-          })
+        await axios.post(apiurl, { reqKey: keys, reqVal: value })
           .then(response => response.data)
           .then(json => {
            // console.log(json);
@@ -70,7 +41,6 @@ const App = () => {
             setData(String(error));
             console.log('axios error => ', error);
           });
-        //
       } catch (err) {
         setData(String(err));
       }
@@ -80,12 +50,10 @@ const App = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-       
+      <SafeAreaView >
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: "#000000",
             padding: 10,
           }}>
           <Section title=" Provide an API endpoint"></Section>
@@ -125,6 +93,7 @@ const App = () => {
               backgroundColor: '#262626',
               height: 300,
               justifyContent: 'flex-start',
+              padding:20
             }}>
             <SafeAreaView style={{flex: 1}}>
              
@@ -189,14 +158,6 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 5,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    fontSize: 18,
-    fontWeight: '400',
   },
   highlight: {
     margin: 6,

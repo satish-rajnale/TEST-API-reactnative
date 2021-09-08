@@ -1,7 +1,7 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.firstapp"
-4    android:versionCode="1"
+4    android:versionCode="1004"
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
@@ -11,48 +11,50 @@
 9-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:4:5-67
-11-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:4:22-64
+11-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:5:22-64
 12
 13    <application
-13-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:6:5-24:19
+13-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:7:5-27:19
 14        android:name="com.firstapp.MainApplication"
-14-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:7:7-38
+14-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:8:7-38
 15        android:allowBackup="false"
-15-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:11:7-34
+15-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:12:7-34
 16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 16-->[androidx.core:core:1.0.1] C:\Users\SERVOMUM001\.gradle\caches\transforms-3\b9897e67809a07f01cf6c8f71f9cd815\transformed\core-1.0.1\AndroidManifest.xml:22:18-86
 17        android:icon="@mipmap/ic_launcher"
-17-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:9:7-41
+17-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:10:7-41
 18        android:label="@string/app_name"
-18-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:8:7-39
+18-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:9:7-39
 19        android:roundIcon="@mipmap/ic_launcher_round"
-19-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:10:7-52
-20        android:theme="@style/AppTheme" >
-20-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:12:7-38
-21        <activity
-21-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:13:7-23:18
-22            android:name="com.firstapp.MainActivity"
-22-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:14:9-37
-23            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-23-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:16:9-86
-24            android:label="@string/app_name"
-24-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:15:9-41
-25            android:launchMode="singleTask"
-25-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:17:9-40
-26            android:windowSoftInputMode="adjustResize" >
-26-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:18:9-51
-27            <intent-filter>
-27-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:19:9-22:25
-28                <action android:name="android.intent.action.MAIN" />
-28-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:20:13-65
-28-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:20:21-62
-29
-30                <category android:name="android.intent.category.LAUNCHER" />
-30-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:21:13-73
-30-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:21:23-70
-31            </intent-filter>
-32        </activity>
-33    </application>
-34
-35</manifest>
+19-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:11:7-52
+20        android:theme="@style/AppTheme"
+20-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:13:7-38
+21        android:usesCleartextTraffic="true" >
+21-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:14:7-42
+22        <activity
+22-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:16:7-26:18
+23            android:name="com.firstapp.MainActivity"
+23-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:17:9-37
+24            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+24-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:19:9-86
+25            android:label="@string/app_name"
+25-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:18:9-41
+26            android:launchMode="singleTask"
+26-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:20:9-40
+27            android:windowSoftInputMode="adjustResize" >
+27-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:21:9-51
+28            <intent-filter>
+28-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:22:9-25:25
+29                <action android:name="android.intent.action.MAIN" />
+29-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:23:13-65
+29-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:23:21-62
+30
+31                <category android:name="android.intent.category.LAUNCHER" />
+31-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:24:13-73
+31-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:24:23-70
+32            </intent-filter>
+33        </activity>
+34    </application>
+35
+36</manifest>
