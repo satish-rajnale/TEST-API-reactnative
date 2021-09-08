@@ -49,30 +49,12 @@ const App = () => {
   const [keys, setKeys] = useState('red');
   const [value, setValue] = useState('13');
   const [data, setData] = useState('NULL');
-  const [getdata, setGetData] = useState('NULL');
-  const [selectedValue, setSelectedValue] = useState('GET');
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   const hitAPI = async () => {
-    // if (selectedValue == 'GET') {
-    //   try {
-    //     await axios(apiurl)
-    //       .then(response => response.data)
-    //       .then(json => {
-    //         console.log(json);
-    //         setGetData(json);
-    //       })
-    //       .catch(function (error) {
-    //         setGetData(String(error));
-    //         console.log('axios error => ', error);
-    //       });
-    //   } catch (err) {
-    //     setGetData(String(err));
-    //   }
-    // } else if (selectedValue == 'POST') {
       try {
         await axios
           .post(apiurl, {
@@ -81,8 +63,7 @@ const App = () => {
           })
           .then(response => response.data)
           .then(json => {
-            console.log(json);
-
+           // console.log(json);
             setData(json);
           })
           .catch(function (error) {
@@ -93,9 +74,6 @@ const App = () => {
       } catch (err) {
         setData(String(err));
       }
-    // } else {
-    //   return;
-    // }
   };
 
   return (
