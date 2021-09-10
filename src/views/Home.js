@@ -1,6 +1,7 @@
 // src/views/Home.js
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import Product from '../components/Product';
 
@@ -30,6 +31,27 @@ const products = [
 ];
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: "Title",
+    headerLeft: ()=>(
+      <Icon name='ios-menu-outline' color='#000' size={26} style={{ paddingLeft: 15, width: 40 }}  />
+    ),
+    headerRight: () =>(
+      <View style={{ flexDirection: "row",
+      justifyContent: "space-evenly",
+      width: 120}}>
+        
+
+            <Button 
+    icon={{name: 'envira', type: 'font-awesome'}} 
+    size={30} buttonStyle={{}}/>
+{/* <Icon type="ionicon" name={Platform.OS === "ios" ? "ios-search" : "heartbeat"} type='font-awesome' />
+        <Icon type="ionicon" name={Platform.OS === "ios" ? "ios-heart" : "md-heart"} />
+        <Icon type="ionicon" name={Platform.OS === "ios" ? "ios-more" : "md-more"} /> */}
+        
+      </View>
+    )
+  };
     render() {
       return (
         <ScrollView
@@ -62,6 +84,17 @@ const styles = StyleSheet.create({
   },
   col: {
       flex: 1,
+  },
+  icon: {
+    paddingLeft: 10
+  },
+  iconContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: 120
+  },
+  container: {
+    flex: 1
   },
 });
 

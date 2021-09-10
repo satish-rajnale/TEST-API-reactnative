@@ -12,55 +12,55 @@
 11-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\debug\AndroidManifest.xml:5:5-77
 11-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\debug\AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:4:5-67
-12-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:4:22-64
+12-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:5:5-67
+12-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:5:22-64
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 13-->[com.facebook.flipper:flipper:0.93.0] C:\Users\SERVOMUM001\.gradle\caches\transforms-3\8cf55bdce16a002612f05f30a64a017a\transformed\jetified-flipper-0.93.0\AndroidManifest.xml:16:5-76
 13-->[com.facebook.flipper:flipper:0.93.0] C:\Users\SERVOMUM001\.gradle\caches\transforms-3\8cf55bdce16a002612f05f30a64a017a\transformed\jetified-flipper-0.93.0\AndroidManifest.xml:16:22-73
 14
 15    <application
-15-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:6:5-24:19
+15-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:7:5-27:19
 16        android:name="com.firstapp.MainApplication"
-16-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:7:7-38
+16-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:8:7-38
 17        android:allowBackup="false"
-17-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:11:7-34
+17-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:12:7-34
 18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 18-->[androidx.core:core:1.1.0] C:\Users\SERVOMUM001\.gradle\caches\transforms-3\384a804ddf61add8f1298a3b8f500b71\transformed\core-1.1.0\AndroidManifest.xml:24:18-86
 19        android:debuggable="true"
 20        android:icon="@mipmap/ic_launcher"
-20-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:9:7-41
+20-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:10:7-41
 21        android:label="@string/app_name"
-21-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:8:7-39
+21-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:9:7-39
 22        android:roundIcon="@mipmap/ic_launcher_round"
-22-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:10:7-52
+22-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:11:7-52
 23        android:theme="@style/AppTheme"
-23-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:12:7-38
+23-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:13:7-38
 24        android:usesCleartextTraffic="true" >
-24-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\debug\AndroidManifest.xml:8:9-44
+24-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:14:7-42
 25        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 25-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\debug\AndroidManifest.xml:11:9-86
 25-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\debug\AndroidManifest.xml:11:19-83
 26        <activity
-26-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:13:7-23:18
+26-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:16:7-26:18
 27            android:name="com.firstapp.MainActivity"
-27-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:14:9-37
+27-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:17:9-37
 28            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-28-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:16:9-86
+28-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:19:9-86
 29            android:label="@string/app_name"
-29-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:15:9-41
+29-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:18:9-41
 30            android:launchMode="singleTask"
-30-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:17:9-40
+30-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:20:9-40
 31            android:windowSoftInputMode="adjustResize" >
-31-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:18:9-51
+31-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:21:9-51
 32            <intent-filter>
-32-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:19:9-22:25
+32-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:22:9-25:25
 33                <action android:name="android.intent.action.MAIN" />
-33-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:20:13-65
-33-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:20:21-62
+33-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:23:13-65
+33-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:23:21-62
 34
 35                <category android:name="android.intent.category.LAUNCHER" />
-35-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:21:13-73
-35-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:21:23-70
+35-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:24:13-73
+35-->C:\Learn\amservices\sampleapp\firstapp\android\app\src\main\AndroidManifest.xml:24:23-70
 36            </intent-filter>
 37        </activity>
 38    </application>

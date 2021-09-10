@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from './views/Home';
 import DetailsScreen from './views/Details';
 
@@ -6,7 +6,7 @@ const AppNavigator = createStackNavigator(
     {
         Home: {
             screen: HomeScreen,
-            navigationOptions: { title: 'Home' }
+            navigationOptions: { title: 'Home' },
         },
         Details: {
             screen: DetailsScreen,
