@@ -1,49 +1,96 @@
 // src/components/Product.js
-import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
-import {Card, Button, Image} from 'react-native-elements';
+import React, { useState } from 'react';
+import {
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+import {Card, Button, Image, Input} from 'react-native-elements';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {withNavigation} from 'react-navigation';
 
-class Product extends React.Component {
-  render() {
-    return (
-      <View style={styles.wrapper}>
-        <View style={styles.imageWrapper}>
-          <Image
-            style={styles.image}
-            source={{uri:this.props.product.image}}
-          />
-        </View>
-        <View>
-          <Text style={styles.title}>{this.props.product.title}</Text>
-          <Text style={styles.subtitle}>${this.props.product.price}</Text>
-        </View>
-        <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-  <Text style={styles.buttonText}>
-    Sign in with Facebook
-  </Text>
-</LinearGradient>
+function Product({item}) {
+    const [productCount, setProductCount] = useState("0");
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.imageWrapper}>
+        <Image style={styles.image} source={{uri: item.image}} />
       </View>
-    );
-  }
+      <View style={styles.rightContent}>
+        <Text numberOfLines={2} style={styles.title}>
+          {item.title}
+        </Text>
+        <View
+          style={[
+            styles.rightContent,
+            {
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: 180,
+            },
+          ]}>
+          <Text style={styles.price}>${item.price}</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              alignContent: 'space-around',
+            }}>
+            <TouchableOpacity
+              style={styles.button}
+              activeOpacity={0.7}
+              onPress={() => {
+                setProductCount((prevCount) => (Number.parseInt(prevCount)-1).toString());
+              }}>
+              <Icon name="minus" type="font-awesome" size={20} />
+            </TouchableOpacity>
+            <TextInput
+                 textAlign={'center'}
+              style={{
+                backgroundColor: 'whitesmoke',
+                height: 32,
+                width: 32,
+                padding:0,
+
+           
+                color:"#000000",
+                marginHorizontal: 5,
+                borderColor: '#000000',
+                borderWidth: 1,
+                borderRadius: 7,
+                marginBottom: 5,
+              }}
+
+              value={String(productCount)}
+            />
+            <TouchableOpacity
+              style={styles.button}
+              activeOpacity={0.7}
+              onPress={() => {
+               setProductCount((prevCount) => (Number.parseInt(prevCount)+1).toString());
+              }}>
+              <Icon name="plus" type="font-awesome" size={20} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    linearGradient: {
-        flex: 1,
-        paddingLeft: 15,
-        paddingRight: 15,
-        borderRadius: 5
-      },
-      buttonText: {
-        fontSize: 18,
-        fontFamily: 'Gill Sans',
-        textAlign: 'center',
-        margin: 10,
-        color: '#ffffff',
-        backgroundColor: 'transparent',
-      },
+  button: {
+    elevation: 8,
+    backgroundColor: '#ffffff',
+    borderRadius: 7,
+    paddingVertical: 5,
+    width: 35,
+    height: 30,
+  },
+
   name: {
     color: '#5a647d',
     fontWeight: 'bold',
@@ -59,63 +106,41 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flexDirection: 'row',
-    height:200,
-    marginBottom: 15,
-    backgroundColor:li
+    height: 150,
+    display: 'flex',
+    alignItems: 'center',
+    padding: 14,
+    marginVertical: 5,
+    backgroundColor: '#ffffff',
+    marginHorizontal: 13,
+    width: '92%',
   },
   imageWrapper: {
     marginRight: 10,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 130,
+    resizeMode: 'contain',
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontWeight: '400',
+
+    width: 160,
   },
-  subtitle: {
+  price: {
     fontSize: 16,
     color: '#303540',
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  rightContent: {
+    height: 120,
+    display: 'flex',
+
+    justifyContent: 'space-between',
   },
 });
 
 export default withNavigation(Product);
-
-//     <Card style={{display:"flex"}}
-// >
-{
-  /* <Text style={{marginBottom: 10, marginTop: 20 }} h2>
-                {this.props.product.category}
-            </Text>
-            <Text style={styles.price} h4>
-                $ {this.props.product.price}
-            </Text>
-            <Text h6 style={styles.description}>
-                added 2h ago
-            </Text>
-            <Button
-            type="clear"
-            title='Buy now'
-            onPress={() => this.props.navigation.navigate('Details', {
-                name: this.props.product.title,
-                price: this.props.product.price,
-                img: this.props.product.image
-            })} /> */
-}
-//               <Card.Title style={{}}>HELLO WORLD</Card.Title>
-//   <Card.Divider/>
-//   <Card.Image
-//   style={{resizeMode:"contain",alignSelf:"flex-start"}}
-//     ImageResizeMode={true}
-//     scale={0}
-//     width={100}
-//     height={150}
-//     source = {{uri:this.props.product.image}}>
-//     </Card.Image>
-//     <Button
-//       icon={<Icon name='code' color='#ffffff' />}
-//       buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-//       title='VIEW NOW' />
-
-//         </Card>
