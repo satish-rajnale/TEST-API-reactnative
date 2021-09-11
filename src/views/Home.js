@@ -12,34 +12,13 @@ import {
 import {Button, Icon} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {withNavigation} from 'react-navigation';
+import { connect, Provider } from 'react-redux';
 import Product from '../components/Product';
 import FetchProducts from '../functions/fetchProducts';
-// const BASE_URL =
-//   'https://raw.githubusercontent.com/sdras/sample-vue-shop/master/dist';
-
-// const products = [
-//   {
-//     name: 'Khaki Suede Polish Work Boots',
-//     price: 149.99,
-//     img: `${BASE_URL}/shoe1.png`,
-//   },
-//   {
-//     name: 'Camo Fang Backpack Jungle',
-//     price: 39.99,
-//     img: `${BASE_URL}/jacket1.png`,
-//   },
-//   {
-//     name: 'Parka and Quilted Liner Jacket',
-//     price: 49.99,
-//     img: `${BASE_URL}/jacket2.png`,
-//   },
-//   {
-//     name: 'Cotton Black Cap',
-//     price: 12.99,
-//     img: `${BASE_URL}/hat1.png`,
-//   },
-// ];
-const Loader = () => {
+import configureStore from '../store';
+ 
+const store = configureStore;
+export const Loader = () => {
   const loaderStyles = StyleSheet.create({
     container: {
       flex: 1,
@@ -58,16 +37,55 @@ const Loader = () => {
   );
 };
 class HomeScreen extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       mainData: {products: [], offset: 0, limit: 100},
-
+      cartCount: [],
       loading: true,
+
     };
-  }
-  static navigationOptions = {
-    title: 'Title',
+    this.navigation = props.navigation;
+  };
+
+   handleProductCount =(action) => {
+    //  console.log(action)
+    const filteredCart = this.state.cartCount.findIndex(({id}) => id == action.id);
+     switch(action.type){
+       case "INCREMENT":
+        // console.log(filteredCart)
+        if(filteredCart != -1 ){
+          let newVal =  Number.parseInt(action.prevCount)+1;
+        const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
+
+          this.setState({...this.state, cartCount: newArr});
+          //  console.log("inside addder", 
+          //  this.state.cartCount);
+          return newVal.toString();
+        }
+       let newObj = {id: action.id, count:1};
+        
+        this.setState({cartCount :[...this.state.cartCount, newObj] });
+        //  console.log(this.state.cartCount)
+         return (Number.parseInt(action.prevCount)+1).toString();
+      
+      
+         case "DECREMENT":
+        if(Number.parseInt(action.prevCount) == 0 ){
+          return 0;
+        }
+        let newVal =  Number.parseInt(action.prevCount)-1;
+        const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
+        this.setState({...this.state, cartCount : newArr});
+        
+        return newVal.toString();
+     }
+   
+   };
+
+
+  static navigationOptions =({navigation })=> {
+    return {title: 'Title',
     // headerLeft: ()=>(
     //   <Icon
     //      containerStyle={{paddingLeft: 10}}
@@ -94,12 +112,12 @@ class HomeScreen extends React.Component {
           }}
           activeOpacity={0.7}
           onPress={() => {
-            console.log('clicked');
+         navigation.navigate('Details');
           }}>
           <Icon name="shoppingcart" type="antdesign" size={30} />
         </TouchableOpacity>
       </View>
-    ),
+    ),}
   };
   componentDidMount() {
     // this.fetchResult();
@@ -110,6 +128,7 @@ class HomeScreen extends React.Component {
           this.setState({mainData: {products: data}, loading: false});
         }
       });
+     // console.log(store.getState().countReducer);
   }
 
   fetchResult = () => {
@@ -123,9 +142,11 @@ class HomeScreen extends React.Component {
     // });
     // });
   };
-
+ onpress = () => {   //console.log(store.getState().countReducer); return this.props.increment
+};
   render() {
     return (
+      <Provider store = { store }>
       <View
         style={{
           flexGrow: 0,
@@ -152,12 +173,13 @@ class HomeScreen extends React.Component {
               onEndReached={this.fetchResult}
               onEndReachedThreshold={0.7}
               data={this.state.mainData.products}
-              renderItem={({item}) => <Product item={item} />}
+              renderItem={({item}) => <Product onpress={this.onpress} item={item} handleProductCount={this.handleProductCount}/>}
               keyExtractor={item => item.id.toString()}
             />
           )}
         </SafeAreaView>
       </View>
+      </Provider>
     );
   }
 }
@@ -184,4 +206,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(HomeScreen);
+const mapStateToProps = state => ({
+  count: state.countReducer.count,
+});
+
+// const ActionCreators = Object.assign(
+//   {},
+//   changeCount
+// );
+const mapDispatchToProps = dispatch => ({
+  increment : () => dispatch(countIncrement)
+});
+export const countIncrement = () => ({
+  type : "COUNTER_CHANGE",
+  id : 1
+})
+connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default withNavigation(HomeScreen)

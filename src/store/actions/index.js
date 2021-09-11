@@ -1,0 +1,7 @@
+
+
+export const INCREMENT_COUNT = 'INCREMENT_COUNT';
+export const REDUCE_COUNT = 'REDUCE_COUNT';
+export const COUNTER_CHANGE = 'COUNTER_CHANGE';
+
+

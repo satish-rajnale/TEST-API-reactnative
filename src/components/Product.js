@@ -1,5 +1,5 @@
 // src/components/Product.js
-import React, { useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Text,
   StyleSheet,
@@ -10,9 +10,44 @@ import {
 import {Card, Button, Image, Input} from 'react-native-elements';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {withNavigation} from 'react-navigation';
+import { ReactReduxContext, useDispatch, useSelector } from 'react-redux'
+ 
+function Product({item, handleProductCount, onpress}) {
+  const [productCount, setProductCount] = useState('0');
+  const dispatch = useDispatch();
+  const store = useSelector((state) => state.countReducer.cart.filter((obj) => obj.id == item.id));
+  //console.log(store)
+  useEffect(() => {
+    setProductCount(store.count.toString());
+  })
 
-function Product({item}) {
-    const [productCount, setProductCount] = useState("0");
+
+//   handleProductCount =(action) => {
+//     const filteredCart = this.state.cartCount.findIndex((obj) => obj.id == action.id);
+//      switch(action.type){
+//        case "INCREMENT":
+       
+//         if(filteredCart != -1){
+//           let newVal =  Number.parseInt(action.prevCount)+1;
+//           this.setState({cartCount: cartCount[filteredCart].count = newVal});
+//           console.log(this.state.cartCount);
+//           return newVal.toString();
+//         }
+//         this.setState(cartCount.push({id: action.id, count:1}));
+//          return (Number.parseInt(action.prevCount)+1).toString();
+//        case "DECREMENT":
+//          console.log(Number.parseInt(action.prevCount) == NaN )
+//         if(Number.parseInt(action.prevCount) == 0 || Number.parseInt(action.prevCount) == "NaN"){
+//           return;
+//         }
+//         let newVal =  Number.parseInt(action.prevCount)-1;
+//         const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
+//         this.setState({...this.state,cartCount : newArr});
+//         console.log(this.state.cartCount);
+//         return newVal.toString();
+//      }
+   
+//    };
   return (
     <View style={styles.wrapper}>
       <View style={styles.imageWrapper}>
@@ -43,34 +78,38 @@ function Product({item}) {
               style={styles.button}
               activeOpacity={0.7}
               onPress={() => {
-                setProductCount((prevCount) => (Number.parseInt(prevCount)-1).toString());
+                setProductCount(handleProductCount({type: "DECREMENT",prevCount:productCount, id:item.id})
+                );
               }}>
               <Icon name="minus" type="font-awesome" size={20} />
             </TouchableOpacity>
             <TextInput
-                 textAlign={'center'}
+              textAlign={'center'}
               style={{
                 backgroundColor: 'whitesmoke',
                 height: 32,
                 width: 32,
-                padding:0,
-
-           
-                color:"#000000",
+                padding: 0,
+                color: '#000000',
                 marginHorizontal: 5,
                 borderColor: '#000000',
                 borderWidth: 1,
                 borderRadius: 7,
                 marginBottom: 5,
               }}
-
               value={String(productCount)}
             />
             <TouchableOpacity
               style={styles.button}
               activeOpacity={0.7}
               onPress={() => {
-               setProductCount((prevCount) => (Number.parseInt(prevCount)+1).toString());
+                onpress();
+              dispatch({
+                  type : "COUNTER_CHANGE",
+                  id : item.id
+                });
+               
+                //setProductCount(() => setProductCount(handleProductCount({type: "INCREMENT",prevCount:productCount, id:item.id})));
               }}>
               <Icon name="plus" type="font-awesome" size={20} />
             </TouchableOpacity>
