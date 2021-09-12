@@ -10,10 +10,10 @@ function somereducer(action) {
   switch (action.type) {
     case types.INCREMENT_COUNT:
       incrementCartCount(response.id);
-      return state;
+      return {...state};
     case types.REDUCE_COUNT:
       state.loginId = response.data;
-      return state;
+      return {...state};
     default:
       return state;
   }
@@ -21,12 +21,12 @@ function somereducer(action) {
 
 const countReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.COUNTER_CHANGE:
-     // console.log('got in reducer');
-      incrementCartCount(state,action.id);
-      return {
-        ...state,
-      };
+    case types.INCREMENT_COUNT:
+      incrementCartCount(state, action.id);
+      return {...state};
+    case types.REDUCE_COUNT:
+      reduceCartCount(state, action.id);
+      return {...state};
     default:
       return state;
   }
@@ -50,3 +50,17 @@ const incrementCartCount = (state,receivedId )=> {
   //console.log(state);
   return 0;
 };
+
+const reduceCartCount =  (state,receivedId )=> {
+  const isInCart = state.cart.findIndex(obj => obj.id == receivedId);
+  if(isInCart != -1){
+    if(Number.parseInt(state.cart[isInCart].count) != 0 ){
+      let newVal = Number.parseInt(state.cart[isInCart].count) - 1;
+      state.cart[isInCart].count = newVal;
+     // console.log(state.cart);
+      return newVal.toString();
+  }
+}
+  return 0;
+  
+}

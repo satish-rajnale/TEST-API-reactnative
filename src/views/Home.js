@@ -40,7 +40,7 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mainData: {products: [], offset: 0, limit: 100},
+      mainData: {products: [], offset: 0, limit: 10},
       cartCount: [],
       loading: true,
 
@@ -121,7 +121,7 @@ class HomeScreen extends React.Component {
   };
   componentDidMount() {
     // this.fetchResult();
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://fakestoreapi.com/products?limit=5')
       .then(res => res.json())
       .then(data => {
         if (data && data.length > 0) {
@@ -215,11 +215,11 @@ const mapStateToProps = state => ({
 //   changeCount
 // );
 const mapDispatchToProps = dispatch => ({
-  increment : () => dispatch(countIncrement)
+ // increment : () => dispatch(countIncrement)
 });
-export const countIncrement = () => ({
-  type : "COUNTER_CHANGE",
-  id : 1
-})
+// export const countIncrement = () => ({
+//   type : "COUNTER_CHANGE",
+//   id : 1
+// })
 connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 export default withNavigation(HomeScreen)

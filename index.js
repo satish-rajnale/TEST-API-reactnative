@@ -11,10 +11,10 @@
  
 //  const store = configureStore()
  
- const RNRedux = () => (
-   <Provider store = { store }>
-     <App />
-   </Provider>
- )
+//  const RNRedux = () => (
+//    <Provider store = { store }>
+//      <App />
+//    </Provider>
+//  )
  AppRegistry.registerComponent(appName, () => App);
  

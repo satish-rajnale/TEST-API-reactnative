@@ -12,14 +12,16 @@ import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {withNavigation} from 'react-navigation';
 import { ReactReduxContext, useDispatch, useSelector } from 'react-redux'
  
-function Product({item, handleProductCount, onpress}) {
+function Product({item}) {
   const [productCount, setProductCount] = useState('0');
   const dispatch = useDispatch();
   const store = useSelector((state) => state.countReducer.cart.filter((obj) => obj.id == item.id));
-  //console.log(store)
+  
   useEffect(() => {
-    setProductCount(store.count.toString());
-  })
+    if(store.length != 0){
+      setProductCount(store[0].count);
+    };
+  }, [store]);
 
 
 //   handleProductCount =(action) => {
@@ -78,8 +80,12 @@ function Product({item, handleProductCount, onpress}) {
               style={styles.button}
               activeOpacity={0.7}
               onPress={() => {
-                setProductCount(handleProductCount({type: "DECREMENT",prevCount:productCount, id:item.id})
-                );
+                dispatch({
+                  type : "REDUCE_COUNT",
+                  id : item.id
+                });
+                // setProductCount(handleProductCount({type: "DECREMENT",prevCount:productCount, id:item.id})
+                // );
               }}>
               <Icon name="minus" type="font-awesome" size={20} />
             </TouchableOpacity>
@@ -103,9 +109,9 @@ function Product({item, handleProductCount, onpress}) {
               style={styles.button}
               activeOpacity={0.7}
               onPress={() => {
-                onpress();
+             
               dispatch({
-                  type : "COUNTER_CHANGE",
+                  type : "INCREMENT_COUNT",
                   id : item.id
                 });
                
