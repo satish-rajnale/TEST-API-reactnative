@@ -4,7 +4,7 @@ import {FlatList, Modal, Pressable, SafeAreaView} from 'react-native';
 
 import Product from '../components/Product';
 import {connect, Provider, shallowEqual} from 'react-redux';
-
+// import RNRestart from 'react-native-restart';
 import {
   Text,
   StyleSheet,
@@ -16,6 +16,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import configureStore from '../store';
 import Loader from './Loader';
 import {Button, Divider, Overlay} from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const store = configureStore;
 const DetailsScreen = () => {
@@ -24,6 +25,8 @@ const DetailsScreen = () => {
   const [subTotal, setsubTotal] = useState(0);
   const [selctedProduct, setselctedProduct] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
   const toggleOverlay = () => {
     setVisible(!visible);
   };
@@ -32,7 +35,16 @@ const DetailsScreen = () => {
   const mainData = useSelector(state => state.countReducer.mainData);
   const gettotal = useSelector(state => state.countReducer.subtotal);
   // console.log(mainData)
-  console.log(subTotal);
+  // console.log(subTotal);
+  const deleteItemFromCart =() => {
+    dispatch({
+      type : "DELETE_RECORD",
+      id : selctedProduct
+    });
+ setModalVisible(!modalVisible);
+ setRefresh(!refresh);
+//  RNRestart.Restart();
+  }
 
   useEffect(() => {
     if (cart.length != 0) {
@@ -52,19 +64,14 @@ const DetailsScreen = () => {
     } else {
       setloading(false);
     }
-  }, [cart, mainData, gettotal]);
+  }, [cart, mainData, gettotal,refresh]);
   const openCloseModal = (id) => {
     setModalVisible(!modalVisible);
     setselctedProduct(id)
   };
   return (
-    <View
-      style={{
-        flexGrow: 0,
-        width: '100%',
-        justifyContent: 'space-between',
-        height: '100%',
-      }}>
+    <ScrollView
+     >
       {loading ? (
         <Loader />
       ) : products.length != 0 ? (
@@ -111,15 +118,9 @@ const DetailsScreen = () => {
             <View style={{flexDirection:"row"}}> 
             <Pressable
               style={[styles.modalbutton, styles.buttonClose]}
-              onPress={() => {
-                
-                    dispatch({
-                      type : "DELETE_RECORD",
-                      id : selctedProduct
-                    });
-                   
-                  
-                setModalVisible(!modalVisible)}}>
+              onPress={() =>
+                deleteItemFromCart()
+                }>
               <Text style={styles.textStyle}>YES</Text>
             </Pressable>
             <Pressable
@@ -132,7 +133,7 @@ const DetailsScreen = () => {
         </View>
       </Modal>
      
-    </View>
+    </ScrollView>
   );
 };
 

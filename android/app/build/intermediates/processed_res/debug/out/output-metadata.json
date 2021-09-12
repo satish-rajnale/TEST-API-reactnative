@@ -24,24 +24,24 @@
       "filters": [
         {
           "filterType": "ABI",
-          "value": "x86"
-        }
-      ],
-      "versionCode": 1002,
-      "versionName": "1.0",
-      "outputFile": "resources-x86Debug.ap_"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "ABI",
           "value": "armeabi-v7a"
         }
       ],
       "versionCode": 1001,
       "versionName": "1.0",
       "outputFile": "resources-armeabi-v7aDebug.ap_"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86"
+        }
+      ],
+      "versionCode": 1002,
+      "versionName": "1.0",
+      "outputFile": "resources-x86Debug.ap_"
     },
     {
       "type": "ONE_OF_MANY",

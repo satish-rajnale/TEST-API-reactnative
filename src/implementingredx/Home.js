@@ -18,7 +18,39 @@ import Product from '../components/Product';
 import FetchProducts from '../functions/fetchProducts';
 // const BASE_URL =
 //   'https://raw.githubusercontent.com/sdras/sample-vue-shop/master/dist';
+ //  handleProductCount =(action) => {
+  //   //  console.log(action)
+  //   const filteredCart = this.state.cartCount.findIndex(({id}) => id == action.id);
+  //    switch(action.type){
+  //      case "INCREMENT":
+  //       // console.log(filteredCart)
+  //       if(filteredCart != -1 ){
+  //         let newVal =  Number.parseInt(action.prevCount)+1;
+  //       const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
 
+  //         this.setState({...this.state, cartCount: newArr});
+  //         //  console.log("inside addder",
+  //         //  this.state.cartCount);
+  //         return newVal.toString();
+  //       }
+  //      let newObj = {id: action.id, count:1};
+
+  //       this.setState({cartCount :[...this.state.cartCount, newObj] });
+  //       //  console.log(this.state.cartCount)
+  //        return (Number.parseInt(action.prevCount)+1).toString();
+
+  //        case "DECREMENT":
+  //       if(Number.parseInt(action.prevCount) == 0 ){
+  //         return 0;
+  //       }
+  //       let newVal =  Number.parseInt(action.prevCount)-1;
+  //       const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
+  //       this.setState({...this.state, cartCount : newArr});
+
+  //       return newVal.toString();
+  //    }
+
+  //  };
 // const products = [
 //   {
 //     name: 'Khaki Suede Polish Work Boots',

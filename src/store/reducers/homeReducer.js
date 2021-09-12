@@ -45,7 +45,7 @@ const countReducer = (state = initialState, action) => {
           }
         }
         let subtotalCalc =  state.cart.reduce((acc, val) => {return acc += val.count},0) * prodList.reduce((acc, val) => {return acc += val.price}, 0);
-      state.subtotal = subtotalCalc;
+      state.subtotal = subtotalCalc.toFixed(2);
         }
         return {
           ...state,
@@ -92,8 +92,11 @@ const reduceCartCount = (state, receivedId) => {
 const deleteRecord = (state, id) => {
   const isInCart = state.cart.findIndex(obj => obj.id == id);
   if (isInCart != -1) {
-    state.cart = state.cart.map(obj => obj.id != id);
+    console.log(state.cart)
+     state.cart.splice(isInCart,1);
+    console.log( state.cart)
     return state.cart
   }
+  console.log("nothing")
   return null
 }
