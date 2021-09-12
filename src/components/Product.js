@@ -12,7 +12,7 @@ import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {withNavigation} from 'react-navigation';
 import { ReactReduxContext, useDispatch, useSelector } from 'react-redux'
  
-function Product({item, withclosebutton,updateSubtotal}) {
+function Product({item, withclosebutton,setModalVisible}) {
   const [productCount, setProductCount] = useState('0');
   const dispatch = useDispatch();
   const store = useSelector((state) => state.countReducer.cart.filter((obj) => obj.id == item.id));
@@ -64,13 +64,9 @@ function Product({item, withclosebutton,updateSubtotal}) {
           withclosebutton ? ( <TouchableOpacity
           style={styles.button}
           activeOpacity={0.7}
-          onPress={() => {
-            dispatch({
-              type : "DELETE_RECORD",
-              id : item.id
-            });
-           
-          }}>
+          onPress={() =>setModalVisible(item.id)
+            
+          }>
           <Icon name="delete" type="material-icons" color='#ff8080' size={20} />
         </TouchableOpacity>) : null
         }
@@ -126,11 +122,13 @@ function Product({item, withclosebutton,updateSubtotal}) {
               activeOpacity={0.7}
               onPress={() => {
              
-              dispatch({
+                dispatch({
                   type : "INCREMENT_COUNT",
                   id : item.id
                 });
-                updateSubtotal()
+                dispatch({
+                  type: "SET_SUBTOTAL"
+                });
                 //setProductCount(() => setProductCount(handleProductCount({type: "INCREMENT",prevCount:productCount, id:item.id})));
               }}>
               <Icon name="plus" type="font-awesome" size={20} />
@@ -175,6 +173,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     marginHorizontal: 13,
     width: '92%',
+    elevation:10,
+    borderRadius:5
   },
   imageWrapper: {
     marginRight: 10,

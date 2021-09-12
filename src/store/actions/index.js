@@ -5,3 +5,4 @@ export const REDUCE_COUNT = 'REDUCE_COUNT';
 export const COUNTER_CHANGE = 'COUNTER_CHANGE';
 export const STORE_MAIN_DATA = 'STORE_MAIN_DATA';
 export const SET_SUBTOTAL = 'SET_SUBTOTAL';
+export const DELETE_RECORD = 'DELETE_RECORD';

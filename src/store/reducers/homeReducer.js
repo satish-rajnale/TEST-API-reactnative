@@ -44,15 +44,18 @@ const countReducer = (state = initialState, action) => {
             }
           }
         }
-      
         let subtotalCalc =  state.cart.reduce((acc, val) => {return acc += val.count},0) * prodList.reduce((acc, val) => {return acc += val.price}, 0);
       state.subtotal = subtotalCalc;
-      console.log(state.subtotal, subtotalCalc)
         }
         return {
           ...state,
         };
-    default:
+        case types.DELETE_RECORD:
+          deleteRecord(state,action.id);
+          return {
+            ...state,
+          };
+        default:
       return state;
   }
 };
@@ -84,3 +87,13 @@ const reduceCartCount = (state, receivedId) => {
   }
   return 0;
 };
+
+
+const deleteRecord = (state, id) => {
+  const isInCart = state.cart.findIndex(obj => obj.id == id);
+  if (isInCart != -1) {
+    state.cart = state.cart.map(obj => obj.id != id);
+    return state.cart
+  }
+  return null
+}
