@@ -12,7 +12,7 @@ import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {withNavigation} from 'react-navigation';
 import { ReactReduxContext, useDispatch, useSelector } from 'react-redux'
  
-function Product({item}) {
+function Product({item, withclosebutton,updateSubtotal}) {
   const [productCount, setProductCount] = useState('0');
   const dispatch = useDispatch();
   const store = useSelector((state) => state.countReducer.cart.filter((obj) => obj.id == item.id));
@@ -56,9 +56,25 @@ function Product({item}) {
         <Image style={styles.image} source={{uri: item.image}} />
       </View>
       <View style={styles.rightContent}>
-        <Text numberOfLines={2} style={styles.title}>
+        <View style={styles.title, {display : "flex", flexDirection:"row"}}>
+        <Text numberOfLines={2} style={{width:150}}>
           {item.title}
         </Text>
+        {
+          withclosebutton ? ( <TouchableOpacity
+          style={styles.button}
+          activeOpacity={0.7}
+          onPress={() => {
+            dispatch({
+              type : "DELETE_RECORD",
+              id : item.id
+            });
+           
+          }}>
+          <Icon name="delete" type="material-icons" color='#ff8080' size={20} />
+        </TouchableOpacity>) : null
+        }
+        </View>
         <View
           style={[
             styles.rightContent,
@@ -114,7 +130,7 @@ function Product({item}) {
                   type : "INCREMENT_COUNT",
                   id : item.id
                 });
-               
+                updateSubtotal()
                 //setProductCount(() => setProductCount(handleProductCount({type: "INCREMENT",prevCount:productCount, id:item.id})));
               }}>
               <Icon name="plus" type="font-awesome" size={20} />
@@ -172,7 +188,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '400',
 
-    width: 160,
+    width: 50,
   },
   price: {
     fontSize: 16,

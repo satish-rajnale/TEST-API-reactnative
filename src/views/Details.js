@@ -1,10 +1,9 @@
 // src/views/Details.js
-import React, { useEffect, useState } from 'react';
-import {  FlatList, SafeAreaView } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, SafeAreaView} from 'react-native';
 
 import Product from '../components/Product';
-import { connect, Provider } from 'react-redux';
-
+import {connect, Provider, shallowEqual} from 'react-redux';
 
 import {
   Text,
@@ -13,59 +12,72 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import configureStore from '../store';
-import  Loader  from './Loader';
- 
+import Loader from './Loader';
+
 const store = configureStore;
 const DetailsScreen = () => {
   const [products, setproducts] = useState([]);
   const [loading, setloading] = useState(true);
-
+  const [subTotal, setsubTotal] = useState(0);
+ 
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.countReducer.cart);
-  const mainData = useSelector((state) => state.countReducer.mainData);
+  const cart = useSelector(state => state.countReducer.cart, shallowEqual);
+  const mainData = useSelector(state => state.countReducer.mainData);
+  const gettotal = useSelector(state => state.countReducer.subtotal);
   // console.log(mainData)
-  console.log(products)
+   console.log(subTotal)
 
   useEffect(() => {
-    if(cart.length != 0){
+    if (cart.length != 0) {
       const prodList = [];
-      for(let obj of mainData){
-        for(let cartObj of cart){
-          if(cartObj.id == obj.id){
-            prodList.push(obj)
+      for (let obj of mainData) {
+        for (let cartObj of cart) {
+          if (cartObj.id == obj.id) {
+            prodList.push(obj);
           }
         }
       }
-    //  const detailsArr =   mainData.filter(obj => obj.id == cartObj.id);
-    //  console.log(detailsArr)
-     setproducts(prodList);
-     setloading(false)
-    };
-
-  }, [cart,mainData ]);
-
-
-      return (
-        <View
-        style={{
-          flexGrow: 0,
-          width: '100%',
-          height: '100%',
-        }}>
-        <SafeAreaView style={styles.container}>
-          {loading ? (
-            <Loader />
-          ) : products.map((item) => (
-            <Product item={item} key={item.id} withclosebutton={true}/>
-          ))}
-          
-        </SafeAreaView>
-     </View>
-      );
     
-}
+      setproducts(prodList);
+      setloading(false);
+      setsubTotal(gettotal);
+      console.log(gettotal)
+    } else {
+      setloading(false);
+    }
+  }, [cart, mainData ,gettotal]);
+  const updateSubtotal = () => {
+    dispatch({
+      type: "SET_SUBTOTAL"
+    });
+  }
+  return (
+    <View
+      style={{
+        flexGrow: 0,
+        width: '100%',
+        height: '100%',
+      }}>
+      <SafeAreaView style={styles.container}>
+        {loading ? (
+          <Loader />
+        ) : products.length != 0 ? (
+          <View>
+            {products.map(item => (
+              <Product item={item} key={item.id} withclosebutton={true} updateSubtotal={updateSubtotal} />
+            ))}
+            <View><Text>SubTotal</Text><Text>${subTotal}</Text></View>
+            
+          </View>
+        ) : (
+          <Text>No items in the Cart! </Text>
+        )}
+      </SafeAreaView>
+    </View>
+  );
+};
 
 export default DetailsScreen;
 const styles = StyleSheet.create({

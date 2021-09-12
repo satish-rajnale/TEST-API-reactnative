@@ -4,4 +4,4 @@ export const INCREMENT_COUNT = 'INCREMENT_COUNT';
 export const REDUCE_COUNT = 'REDUCE_COUNT';
 export const COUNTER_CHANGE = 'COUNTER_CHANGE';
 export const STORE_MAIN_DATA = 'STORE_MAIN_DATA';
-
+export const SET_SUBTOTAL = 'SET_SUBTOTAL';

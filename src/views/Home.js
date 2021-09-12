@@ -151,7 +151,7 @@ class HomeScreen extends React.Component {
               onEndReached={this.fetchResult}
               onEndReachedThreshold={0.7}
               data={this.state.mainData.products}
-              renderItem={({item}) => <Product item={item}  withclosebutton={false}/>}
+              renderItem={({item}) => <Product item={item}  withclosebutton={false} updateSubtotal={()=>null}/>}
               keyExtractor={item => item.id.toString()}
             />
           )}
