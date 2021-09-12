@@ -1,6 +1,6 @@
 // src/views/Details.js
 import React, {useEffect, useState} from 'react';
-import {FlatList, Modal, Pressable, SafeAreaView} from 'react-native';
+import {FlatList, Image, Modal, Pressable, SafeAreaView} from 'react-native';
 
 import Product from '../components/Product';
 import {connect, Provider, shallowEqual} from 'react-redux';
@@ -25,7 +25,7 @@ const DetailsScreen = () => {
   const [subTotal, setsubTotal] = useState(0);
   const [selctedProduct, setselctedProduct] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [refresh, setRefresh] = useState(false);
+  const [ishipped, setishipped] = useState(false);
 
 
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const DetailsScreen = () => {
       id : selctedProduct
     });
  setModalVisible(!modalVisible);
- setRefresh(!refresh);
+
 
   }
 
@@ -57,33 +57,25 @@ const DetailsScreen = () => {
       setproducts(prodList);
       setloading(false);
       setsubTotal(gettotal);
-      console.log(gettotal);
+     
     } else {
       setloading(false);
     }
-  }, [cart, mainData, gettotal,refresh]);
+  }, [cart, mainData, gettotal]);
   const openCloseModal = (id) => {
     setModalVisible(!modalVisible);
     setselctedProduct(id)
   };
-
+const shipOrder = () => {
+setishipped(!ishipped);
+setTimeout(()=> {setishipped(!ishipped)},4000);
+}
  const updateCartCount = () => {
-    setTimeout(() => {
-    //  const cart = store.getState().countReducer.cart;
-    //  console.log(store.getState().countReducer.cart);
-    //  const cartCount = cart.reduce((acc,val) => {if(val.count != 0){acc += 1}return acc},0)
-    //  if (cartCount != undefined) {
-    //    this.setState({
-    //      cartCount: cartCount,
-    //      loading: false,
-    //    });
-    //  }
-   
-    },500)}
+  }
   return (
     <ScrollView
      >
-      {loading ? (
+      {ishipped ? <Image style={{width:300,height:300,resizeMode:"contain"}} source={require('../../assets/shipping.gif')} /> :  loading ? (
         <Loader />
       ) : products.length != 0 ? (
         <SafeAreaView style={{flex: 1}}>
@@ -107,7 +99,7 @@ const DetailsScreen = () => {
               style={styles.buyButton}
               activeOpacity={0.7}
               onPress={() => {
-                null;
+                shipOrder()
               }}>
               <Text style={{fontSize: 21, color: '#ffffff'}}>BUY</Text>
             </TouchableOpacity>

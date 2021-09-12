@@ -95,7 +95,7 @@ class HomeScreen extends React.Component {
    updateCartCount = () => {
  setTimeout(() => {
   const cart = store.getState().countReducer.cart;
-  console.log(store.getState().countReducer.cart);
+  // console.log(store.getState().countReducer.cart);
   const cartCount = cart.reduce((acc,val) => {if(val.count != 0){acc += 1}return acc},0)
   if (cartCount != undefined) {
     this.setState({
