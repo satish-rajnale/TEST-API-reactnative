@@ -1,5 +1,5 @@
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-
+import React from 'react';
  const Loader = () => {
     const loaderStyles = StyleSheet.create({
       container: {

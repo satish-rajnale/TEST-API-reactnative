@@ -23,12 +23,13 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mainData: {products: [], offset: 0, limit: 10},
+      mainData: {products:props.products, offset: 0, limit: 10},
       cartCount: [],
       loading: true,
 
     };
-    this.navigation = props.navigation;
+   
+
   };
 
    handleProductCount =(action) => {
@@ -104,32 +105,26 @@ class HomeScreen extends React.Component {
   };
   componentDidMount() {
     // this.fetchResult();
-    fetch('https://fakestoreapi.com/products?limit=5')
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.length > 0) {
-          this.setState({mainData: {products: data}, loading: false});
-        }
-      });
-     // console.log(store.getState().countReducer);
+    // fetch('https://fakestoreapi.com/products?limit=5')
+    // .then(res => res.json())
+    // .then(data => {
+    //   if (data && data.length > 0) {
+    //     console.log('data');
+    //     setState(data);
+    //   }
+    // });
+    const products = store.getState().countReducer.mainData;
+  if(products != undefined){
+   this.setState({mainData : {products : products}, loading: false});
+  }
+ 
   }
 
-  fetchResult = () => {
-    // const { offset, limit, list } = this.state;
-    // fetchModeDateFromAPI(offset, limit).then(res => {
-    // if (!res.list) return;
-    // this.setState({
-    //     list: list.concat(res.list),
-    //     offset: offset + 100,
-    //     limit: limit
-    // });
-    // });
-  };
- onpress = () => {   //console.log(store.getState().countReducer); return this.props.increment
-};
+
   render() {
+ 
     return (
-      <Provider store = { store }>
+     
       <View
         style={{
           flexGrow: 0,
@@ -156,13 +151,13 @@ class HomeScreen extends React.Component {
               onEndReached={this.fetchResult}
               onEndReachedThreshold={0.7}
               data={this.state.mainData.products}
-              renderItem={({item}) => <Product onpress={this.onpress} item={item} handleProductCount={this.handleProductCount}/>}
+              renderItem={({item}) => <Product item={item}  withclosebutton={false}/>}
               keyExtractor={item => item.id.toString()}
             />
           )}
         </SafeAreaView>
       </View>
-      </Provider>
+  
     );
   }
 }
@@ -190,19 +185,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  count: state.countReducer.count,
+  products: state.countReducer.mainData
 });
 
-// const ActionCreators = Object.assign(
-//   {},
-//   changeCount
-// );
+
 const mapDispatchToProps = dispatch => ({
  // increment : () => dispatch(countIncrement)
 });
-// export const countIncrement = () => ({
-//   type : "COUNTER_CHANGE",
-//   id : 1
-// })
+
 connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 export default withNavigation(HomeScreen)

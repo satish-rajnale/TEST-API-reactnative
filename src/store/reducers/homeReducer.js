@@ -27,6 +27,12 @@ const countReducer = (state = initialState, action) => {
     case types.REDUCE_COUNT:
       reduceCartCount(state, action.id);
       return {...state};
+      case types.STORE_MAIN_DATA:
+        state.mainData = action.payload
+        //console.log("set data", state)
+        return {
+          ...state,
+        };
     default:
       return state;
   }

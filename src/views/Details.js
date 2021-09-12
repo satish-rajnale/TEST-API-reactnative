@@ -1,5 +1,5 @@
 // src/views/Details.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {  FlatList, SafeAreaView } from 'react-native';
 
 import Product from '../components/Product';
@@ -20,36 +20,49 @@ import  Loader  from './Loader';
 const store = configureStore;
 const DetailsScreen = () => {
   const [products, setproducts] = useState([]);
+  const [loading, setloading] = useState(true);
 
-  // const dispatch = useDispatch();
-  // const store = useSelector((state) => state.countReducer.cart);
-  // const mainData = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.countReducer.cart);
+  const mainData = useSelector((state) => state.countReducer.mainData);
   // console.log(mainData)
-  // useEffect(() => {
-  //   if(store.length != 0){
-  //     setproducts(store);
-  //   };
-  // }, [store]);
+  console.log(products)
+
+  useEffect(() => {
+    if(cart.length != 0){
+      const prodList = [];
+      for(let obj of mainData){
+        for(let cartObj of cart){
+          if(cartObj.id == obj.id){
+            prodList.push(obj)
+          }
+        }
+      }
+    //  const detailsArr =   mainData.filter(obj => obj.id == cartObj.id);
+    //  console.log(detailsArr)
+     setproducts(prodList);
+     setloading(false)
+    };
+
+  }, [cart,mainData ]);
 
 
       return (
-        <Provider store = { store }>
+        <View
+        style={{
+          flexGrow: 0,
+          width: '100%',
+          height: '100%',
+        }}>
         <SafeAreaView style={styles.container}>
           {loading ? (
             <Loader />
-          ) : (
-            <FlatList
-              style={{flex: 1}}
-              // extraData={this.state.mainData}
-              // onEndReached={this.fetchResult}
-              onEndReachedThreshold={0.7}
-              data={products}
-              renderItem={({item}) => <Product item={item} />}
-              keyExtractor={item => item.id.toString()}
-            />
-          )}
+          ) : products.map((item) => (
+            <Product item={item} key={item.id} withclosebutton={true}/>
+          ))}
+          
         </SafeAreaView>
-       </Provider>
+     </View>
       );
     
 }

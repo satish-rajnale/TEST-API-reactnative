@@ -9,12 +9,12 @@
  import React from 'react';
  import configureStore from './src/store';
  
-//  const store = configureStore()
+ const store = configureStore
  
-//  const RNRedux = () => (
-//    <Provider store = { store }>
-//      <App />
-//    </Provider>
-//  )
- AppRegistry.registerComponent(appName, () => App);
+ const RNRedux = () => (
+   <Provider store = { store }>
+     <App />
+   </Provider>
+ )
+ AppRegistry.registerComponent(appName, () => RNRedux);
  
