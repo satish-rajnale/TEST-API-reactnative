@@ -12,7 +12,7 @@ import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {withNavigation} from 'react-navigation';
 import { ReactReduxContext, useDispatch, useSelector } from 'react-redux'
  
-function Product({item, withclosebutton,setModalVisible}) {
+function Product({item, withclosebutton,setModalVisible,updateCartCount}) {
   const [productCount, setProductCount] = useState('0');
   const dispatch = useDispatch();
   const store = useSelector((state) => state.countReducer.cart.filter((obj) => obj.id == item.id));
@@ -96,8 +96,10 @@ function Product({item, withclosebutton,setModalVisible}) {
                   type : "REDUCE_COUNT",
                   id : item.id
                 });
-                // setProductCount(handleProductCount({type: "DECREMENT",prevCount:productCount, id:item.id})
-                // );
+                dispatch({
+                  type: "SET_SUBTOTAL"
+                });
+                updateCartCount();
               }}>
               <Icon name="minus" type="font-awesome" size={20} />
             </TouchableOpacity>
@@ -121,7 +123,7 @@ function Product({item, withclosebutton,setModalVisible}) {
               style={styles.button}
               activeOpacity={0.7}
               onPress={() => {
-             
+                updateCartCount();
                 dispatch({
                   type : "INCREMENT_COUNT",
                   id : item.id

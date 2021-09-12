@@ -78,10 +78,13 @@ const incrementCartCount = (state, receivedId) => {
 const reduceCartCount = (state, receivedId) => {
   const isInCart = state.cart.findIndex(obj => obj.id == receivedId);
   if (isInCart != -1) {
-    if (Number.parseInt(state.cart[isInCart].count) != 0) {
+    if (state.cart[isInCart].count != 0) {
       let newVal = Number.parseInt(state.cart[isInCart].count) - 1;
+     
+        state.cart[isInCart].count = newVal;
+
+     
       state.cart[isInCart].count = newVal;
-      // console.log(state.cart);
       return newVal.toString();
     }
   }
@@ -92,9 +95,9 @@ const reduceCartCount = (state, receivedId) => {
 const deleteRecord = (state, id) => {
   const isInCart = state.cart.findIndex(obj => obj.id == id);
   if (isInCart != -1) {
-    console.log(state.cart)
+    // console.log(state.cart)
      state.cart.splice(isInCart,1);
-    console.log( state.cart)
+    // console.log( state.cart)
     return state.cart
   }
   console.log("nothing")

@@ -27,42 +27,12 @@ class HomeScreen extends React.Component {
       mainData: {products: props.products, offset: 0, limit: 10},
       cartCount: props.cartCount,
       loading: true,
+      refresh: false
     };
+    this.fetchState  = props.fetchState
   }
 
-  //  handleProductCount =(action) => {
-  //   //  console.log(action)
-  //   const filteredCart = this.state.cartCount.findIndex(({id}) => id == action.id);
-  //    switch(action.type){
-  //      case "INCREMENT":
-  //       // console.log(filteredCart)
-  //       if(filteredCart != -1 ){
-  //         let newVal =  Number.parseInt(action.prevCount)+1;
-  //       const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
-
-  //         this.setState({...this.state, cartCount: newArr});
-  //         //  console.log("inside addder",
-  //         //  this.state.cartCount);
-  //         return newVal.toString();
-  //       }
-  //      let newObj = {id: action.id, count:1};
-
-  //       this.setState({cartCount :[...this.state.cartCount, newObj] });
-  //       //  console.log(this.state.cartCount)
-  //        return (Number.parseInt(action.prevCount)+1).toString();
-
-  //        case "DECREMENT":
-  //       if(Number.parseInt(action.prevCount) == 0 ){
-  //         return 0;
-  //       }
-  //       let newVal =  Number.parseInt(action.prevCount)-1;
-  //       const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
-  //       this.setState({...this.state, cartCount : newArr});
-
-  //       return newVal.toString();
-  //    }
-
-  //  };
+ 
 
   static navigationOptions = ({navigation}) => {
     return {
@@ -121,6 +91,22 @@ class HomeScreen extends React.Component {
       });
     }
   }
+  
+   updateCartCount = () => {
+ setTimeout(() => {
+  const cart = store.getState().countReducer.cart;
+  console.log(store.getState().countReducer.cart);
+  const cartCount = cart.reduce((acc,val) => {if(val.count != 0){acc += 1}return acc},0)
+  if (cartCount != undefined) {
+    this.setState({
+      cartCount: cartCount,
+      loading: false,
+    });
+  }
+
+ },500)
+    
+  }
 
   render() {
     return (
@@ -149,9 +135,9 @@ class HomeScreen extends React.Component {
               backgroundColor:"#00000000",
               opacity: 0.2
             }}> */}
-            <Text style={styles.addCartCount}>
+           {this.state.cartCount !=0 && this.state.cartCount != undefined? <Text style={styles.addCartCount}>
             {this.state.cartCount}
-            </Text>
+            </Text> : null}
           {/* </View> */}
 
           {this.state.loading ? (
@@ -167,7 +153,7 @@ class HomeScreen extends React.Component {
                 <Product
                   item={item}
                   withclosebutton={false}
-                  updateSubtotal={() => null}
+                  updateCartCount={this.updateCartCount}
                 />
               )}
               keyExtractor={item => item.id.toString()}
@@ -185,8 +171,9 @@ const styles = StyleSheet.create({
     alignSelf:"flex-end",
     left:290,
     top:-54,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#00e600',
     height: 25,
+    color:"#ffffff",
     textAlign: 'center',
     paddingTop: 3,
     borderRadius:10,
@@ -220,7 +207,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // increment : () => dispatch(countIncrement)
+   fetchState : () => dispatch( {type: "SET_SUBTOTAL"})
 });
 
 connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

@@ -4,7 +4,7 @@ import {FlatList, Modal, Pressable, SafeAreaView} from 'react-native';
 
 import Product from '../components/Product';
 import {connect, Provider, shallowEqual} from 'react-redux';
-// import RNRestart from 'react-native-restart';
+
 import {
   Text,
   StyleSheet,
@@ -27,15 +27,12 @@ const DetailsScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [refresh, setRefresh] = useState(false);
 
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
+
   const dispatch = useDispatch();
   const cart = useSelector(state => state.countReducer.cart, shallowEqual);
   const mainData = useSelector(state => state.countReducer.mainData);
   const gettotal = useSelector(state => state.countReducer.subtotal);
-  // console.log(mainData)
-  // console.log(subTotal);
+
   const deleteItemFromCart =() => {
     dispatch({
       type : "DELETE_RECORD",
@@ -43,7 +40,7 @@ const DetailsScreen = () => {
     });
  setModalVisible(!modalVisible);
  setRefresh(!refresh);
-//  RNRestart.Restart();
+
   }
 
   useEffect(() => {
@@ -51,7 +48,7 @@ const DetailsScreen = () => {
       const prodList = [];
       for (let obj of mainData) {
         for (let cartObj of cart) {
-          if (cartObj.id == obj.id) {
+          if (cartObj.id == obj.id && cartObj.count !=0) {
             prodList.push(obj);
           }
         }
@@ -69,6 +66,20 @@ const DetailsScreen = () => {
     setModalVisible(!modalVisible);
     setselctedProduct(id)
   };
+
+ const updateCartCount = () => {
+    setTimeout(() => {
+    //  const cart = store.getState().countReducer.cart;
+    //  console.log(store.getState().countReducer.cart);
+    //  const cartCount = cart.reduce((acc,val) => {if(val.count != 0){acc += 1}return acc},0)
+    //  if (cartCount != undefined) {
+    //    this.setState({
+    //      cartCount: cartCount,
+    //      loading: false,
+    //    });
+    //  }
+   
+    },500)}
   return (
     <ScrollView
      >
@@ -81,6 +92,7 @@ const DetailsScreen = () => {
               item={item}
               key={item.id}
               withclosebutton={true}
+              updateCartCount={updateCartCount}
               setModalVisible={openCloseModal}
             />
           ))}
@@ -117,14 +129,14 @@ const DetailsScreen = () => {
             <Text style={styles.modalText}>Do you want to remove this product from cart?</Text>
             <View style={{flexDirection:"row"}}> 
             <Pressable
-              style={[styles.modalbutton, styles.buttonClose]}
+              style={[styles.modalbutton, styles.buttonClose,{backgroundColor:"#00e600",color:"#ffffff"}]}
               onPress={() =>
                 deleteItemFromCart()
                 }>
               <Text style={styles.textStyle}>YES</Text>
             </Pressable>
             <Pressable
-              style={[styles.modalbutton, styles.buttonClose]}
+              style={[styles.modalbutton, styles.buttonClose,{backgroundColor:"#ff3333",color:"#ffffff"}]}
               onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.textStyle}>NO</Text>
             </Pressable>
