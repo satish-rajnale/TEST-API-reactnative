@@ -1,10 +1,10 @@
 // src/views/Details.js
-import React from 'react';
+import React, { useState } from 'react';
 import {  FlatList, SafeAreaView } from 'react-native';
 
 import Product from '../components/Product';
+import { connect, Provider } from 'react-redux';
 
-import { Loader } from './Home';
 
 import {
   Text,
@@ -13,15 +13,27 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import configureStore from '../store';
+import  Loader  from './Loader';
+ 
+const store = configureStore;
+const DetailsScreen = () => {
+  const [products, setproducts] = useState([]);
 
-class DetailsScreen extends React.Component {
-    render() {
-      const { navigation } = this.props;
-      const products = navigation.getParam('products');
-      const cartList = navigation.getParam('cartList');
-     const loading = false;
+  // const dispatch = useDispatch();
+  // const store = useSelector((state) => state.countReducer.cart);
+  // const mainData = useSelector((state) => state);
+  // console.log(mainData)
+  // useEffect(() => {
+  //   if(store.length != 0){
+  //     setproducts(store);
+  //   };
+  // }, [store]);
+
 
       return (
+        <Provider store = { store }>
         <SafeAreaView style={styles.container}>
           {loading ? (
             <Loader />
@@ -37,8 +49,9 @@ class DetailsScreen extends React.Component {
             />
           )}
         </SafeAreaView>
+       </Provider>
       );
-    }
+    
 }
 
 export default DetailsScreen;

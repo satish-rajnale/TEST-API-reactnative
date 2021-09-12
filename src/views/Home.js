@@ -16,26 +16,9 @@ import { connect, Provider } from 'react-redux';
 import Product from '../components/Product';
 import FetchProducts from '../functions/fetchProducts';
 import configureStore from '../store';
- 
+ import  Loader  from './Loader';
 const store = configureStore;
-export const Loader = () => {
-  const loaderStyles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-    },
-    horizontal: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      padding: 10,
-    },
-  });
-  return (
-    <View style={styles.loaderStyles}>
-      <ActivityIndicator size="large" color="#00ff00" />
-    </View>
-  );
-};
+
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
