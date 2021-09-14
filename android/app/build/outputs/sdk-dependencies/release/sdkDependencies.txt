@@ -643,6 +643,36 @@ library {
 }
 library {
   maven_library {
+    groupId: "com.facebook.fresco"
+    artifactId: "animated-gif"
+    version: "2.0.0"
+  }
+  digests {
+    sha256: "\031\20233\267\017-\247\303\230W\336\305\351\231\f\246j&u\232\331\272P\356^\2103?\242V\260"
+  }
+}
+library {
+  maven_library {
+    groupId: "com.facebook.fresco"
+    artifactId: "animated-base"
+    version: "2.0.0"
+  }
+  digests {
+    sha256: ",\244\365\037\346i\375\244\3766<\363\304\265ypr\206\362\266\371\342\v\335\266\a\336\354\334<\363\233"
+  }
+}
+library {
+  maven_library {
+    groupId: "com.facebook.fresco"
+    artifactId: "animated-drawable"
+    version: "2.0.0"
+  }
+  digests {
+    sha256: "\332\025s\025\232-\275i\252Q\233R\217L\252\033\301\301\314\031\245(\355ebp\0057\021\271k\036"
+  }
+}
+library {
+  maven_library {
     groupId: "org.webkit"
     artifactId: "android-jsc"
     version: "r250230"
@@ -989,9 +1019,32 @@ library_dependencies {
   library_index: 14
   library_dep_index: 45
 }
+library_dependencies {
+  library_index: 64
+  library_dep_index: 57
+  library_dep_index: 9
+  library_dep_index: 46
+  library_dep_index: 65
+}
+library_dependencies {
+  library_index: 65
+  library_dep_index: 46
+  library_dep_index: 58
+  library_dep_index: 48
+  library_dep_index: 66
+  library_dep_index: 57
+}
+library_dependencies {
+  library_index: 66
+  library_dep_index: 48
+  library_dep_index: 47
+  library_dep_index: 46
+}
 module_dependencies {
   module_name: "base"
   dependency_index: 0
   dependency_index: 64
+  dependency_index: 67
   dependency_index: 5
+  dependency_index: 6
 }

@@ -1,32 +1,44 @@
 // src/views/Details.js
 import React, {useEffect, useState} from 'react';
-import {FlatList, Image, Modal, Pressable, SafeAreaView} from 'react-native';
+import { Modal, Pressable, SafeAreaView} from 'react-native';
 
 import Product from '../components/Product';
-import {connect, Provider, shallowEqual} from 'react-redux';
+import { shallowEqual} from 'react-redux';
 
 import {
   Text,
   StyleSheet,
   View,
   TouchableOpacity,
-  TextInput,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import configureStore from '../store';
 import Loader from './Loader';
-import {Button, Divider, Overlay} from 'react-native-elements';
+import { Divider} from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import axios from 'axios';
 
-const store = configureStore;
-const DetailsScreen = () => {
+const DetailsScreen = ({navigation}) => {
   const [products, setproducts] = useState([]);
   const [loading, setloading] = useState(true);
   const [subTotal, setsubTotal] = useState(0);
   const [selctedProduct, setselctedProduct] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [ishipped, setishipped] = useState(false);
+  const [openShipModal, setopenShipModal] = useState(false);
 
+const loadData = () => {
+  axios.get('https://fakestoreapi.com/products')
+  .then(res => res.data)
+  .then(data => {
+    if (data && data.length > 0) {
+      setState(data);
+      setisfetched(true);
+    }
+  })
+  .catch((err)=> {
+      console.log(err);
+      setloading(false)
+  })
+}
 
   const dispatch = useDispatch();
   const cart = useSelector(state => state.countReducer.cart, shallowEqual);
@@ -38,9 +50,12 @@ const DetailsScreen = () => {
       type : "DELETE_RECORD",
       id : selctedProduct
     });
+    dispatch({
+      type: 'SET_SUBTOTAL',
+    });
  setModalVisible(!modalVisible);
-
-
+ setloading(!loading);
+ 
   }
 
   useEffect(() => {
@@ -61,21 +76,26 @@ const DetailsScreen = () => {
     } else {
       setloading(false);
     }
-  }, [cart, mainData, gettotal]);
+  }, [cart, mainData, gettotal,loading]);
   const openCloseModal = (id) => {
     setModalVisible(!modalVisible);
     setselctedProduct(id)
   };
 const shipOrder = () => {
-setishipped(!ishipped);
-setTimeout(()=> {setishipped(!ishipped)},4000);
+
+setopenShipModal(!openShipModal);
+dispatch({type:"DESTROY_CART"})
+
+navigation.push("Home", {loadData : loadData})
 }
  const updateCartCount = () => {
   }
   return (
     <ScrollView
      >
-      {ishipped ? <Image style={{width:300,height:300,resizeMode:"contain"}} source={require('../../assets/shipping.gif')} /> :  loading ? (
+      {/* {ishipped ? <Image style={{width:300,height:300,resizeMode:"contain"}} source={require('../../assets/shipping.gif')} /> : 
+} */}
+      {loading ? (
         <Loader />
       ) : products.length != 0 ? (
         <SafeAreaView style={{flex: 1}}>
@@ -90,7 +110,7 @@ setTimeout(()=> {setishipped(!ishipped)},4000);
           ))}
           <View style={styles.priceContainer}>
             <View style={styles.priceSection}>
-              <Text style={styles.priceHeadings}>SubTotal</Text>
+              <Text style={styles.priceHeadings}>Total</Text>
               <Text style={styles.totalPrice}>${subTotal}</Text>
             </View>
 
@@ -99,15 +119,18 @@ setTimeout(()=> {setishipped(!ishipped)},4000);
               style={styles.buyButton}
               activeOpacity={0.7}
               onPress={() => {
-                shipOrder()
+                setopenShipModal(!openShipModal)
               }}>
               <Text style={{fontSize: 21, color: '#ffffff'}}>BUY</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
       ) : (
-        <Text>No items in the Cart! </Text>
+        <View style={{backgroundColor:"#ffffff", alignItems:"center",justifyContent:"center", width:"100%",height:650}}>
+        <Text style={{fontSize:30}}>No items in the Cart! </Text>
+        </View>
       )}
+      {/* modal for delete options */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -136,7 +159,38 @@ setTimeout(()=> {setishipped(!ishipped)},4000);
           </View>
         </View>
       </Modal>
-     
+      
+      
+      {/* modal for buy */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={openShipModal}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setopenShipModal(!openShipModal);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Ready to Order?</Text>
+            <Text style={styles.modalText, {fontWeight:"bold"}}>Price : {subTotal}</Text>
+            <View style={{flexDirection:"row"}}> 
+            <Pressable
+              style={[styles.modalbutton, styles.buttonClose,{backgroundColor:"#00e600",color:"#ffffff"}]}
+              onPress={() =>
+                shipOrder()}
+                >
+              <Text style={styles.textStyle}>YES</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.modalbutton, styles.buttonClose,{backgroundColor:"#ff3333",color:"#ffffff"}]}
+              onPress={() => setopenShipModal(!openShipModal)}>
+              <Text style={styles.textStyle}>NO</Text>
+            </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 };

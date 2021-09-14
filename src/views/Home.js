@@ -1,21 +1,11 @@
 // src/views/Home.js
 import React from 'react';
-import {
-  View,
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  ActivityIndicator,
-  FlatList,
-  StatusBar,
-  Text,
-} from 'react-native';
-import {Button, Icon} from 'react-native-elements';
+import {View, SafeAreaView, StyleSheet, FlatList, Text} from 'react-native';
+import {Icon} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {withNavigation} from 'react-navigation';
-import {connect, Provider} from 'react-redux';
+import {connect} from 'react-redux';
 import Product from '../components/Product';
-import FetchProducts from '../functions/fetchProducts';
 import configureStore from '../store';
 import Loader from './Loader';
 const store = configureStore;
@@ -27,23 +17,14 @@ class HomeScreen extends React.Component {
       mainData: {products: props.products, offset: 0, limit: 10},
       cartCount: props.cartCount,
       loading: true,
-      refresh: false
+      refresh: false,
     };
-    this.fetchState  = props.fetchState
   }
-
- 
 
   static navigationOptions = ({navigation}) => {
     return {
       title: 'Title',
-      // headerLeft: ()=>(
-      //   <Icon
-      //      containerStyle={{paddingLeft: 10}}
-      //     type="Ionicons"
-      //     name={Platform.OS === "ios" ? "ios-menu" : "md-menu"}
-      //   />
-      // ),
+
       headerRight: () => (
         <View
           style={{
@@ -72,15 +53,16 @@ class HomeScreen extends React.Component {
     };
   };
   componentDidMount() {
-    // this.fetchResult();
-    // fetch('https://fakestoreapi.com/products?limit=5')
-    // .then(res => res.json())
-    // .then(data => {
-    //   if (data && data.length > 0) {
-    //     console.log('data');
-    //     setState(data);
-    //   }
-    // });
+    if (this.props.loadData != undefined) {
+      this.props.loadData();
+      this.willFocusSubscription = this.props.navigation.addListener(
+        'willFocus',
+        () => {
+          this.props.loadData();
+        },
+      );
+    }
+    this.forceUpdate();
     const products = store.getState().countReducer.mainData;
     const cartcount = store.getState().countReducer.cart.length;
     if (products != undefined) {
@@ -91,22 +73,25 @@ class HomeScreen extends React.Component {
       });
     }
   }
-  
-   updateCartCount = () => {
- setTimeout(() => {
-  const cart = store.getState().countReducer.cart;
-  // console.log(store.getState().countReducer.cart);
-  const cartCount = cart.reduce((acc,val) => {if(val.count != 0){acc += 1}return acc},0)
-  if (cartCount != undefined) {
-    this.setState({
-      cartCount: cartCount,
-      loading: false,
-    });
-  }
 
- },500)
-    
-  }
+  updateCartCount = () => {
+    this.forceUpdate();
+    setTimeout(() => {
+      const cart = store.getState().countReducer.cart;
+      const cartCount = cart.reduce((acc, val) => {
+        if (val.count != 0) {
+          acc += 1;
+        }
+        return acc;
+      }, 0);
+      if (cartCount != undefined) {
+        this.setState({
+          cartCount: cartCount,
+          loading: false,
+        });
+      }
+    }, 500);
+  };
 
   render() {
     return (
@@ -116,29 +101,10 @@ class HomeScreen extends React.Component {
           width: '100%',
           height: '100%',
         }}>
-        {/* this.state.mainData.products.map((product, index) => {
-          return (
-            <View style={styles.row} key={index}>
-              <View style={styles.col}>
-                <Product product={product} />
-              </View>
-            </View>
-          );
-         
-        })} */}
         <SafeAreaView style={styles.container}>
-          {/* <View
-            style={{
-              alignItems: 'flex-end',
-              paddingHorizontal: 22,
-              marginTop: 10,
-              backgroundColor:"#00000000",
-              opacity: 0.2
-            }}> */}
-           {this.state.cartCount !=0 && this.state.cartCount != undefined? <Text style={styles.addCartCount}>
-            {this.state.cartCount}
-            </Text> : null}
-          {/* </View> */}
+          {this.state.cartCount != 0 && this.state.cartCount != undefined ? (
+            <Text style={styles.addCartCount}>{this.state.cartCount}</Text>
+          ) : null}
 
           {this.state.loading ? (
             <Loader />
@@ -168,17 +134,17 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   addCartCount: {
     width: 22,
-    alignSelf:"flex-end",
-    left:290,
-    top:-54,
+    alignSelf: 'flex-end',
+    left: 290,
+    top: -54,
     backgroundColor: '#00e600',
     height: 25,
-    color:"#ffffff",
+    color: '#ffffff',
     textAlign: 'center',
     paddingTop: 3,
-    borderRadius:10,
-    elevation:8,
-    position: "absolute"
+    borderRadius: 10,
+    elevation: 8,
+    position: 'absolute',
   },
   row: {
     flex: 1,
@@ -207,7 +173,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-   fetchState : () => dispatch( {type: "SET_SUBTOTAL"})
+  fetchState: () => dispatch({type: 'SET_SUBTOTAL'}),
 });
 
 connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

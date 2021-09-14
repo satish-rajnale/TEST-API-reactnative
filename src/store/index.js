@@ -1,7 +1,6 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import rootReducers from './reducers'; // where reducers is a object of reducers
-import {initialState} from "./reducers/homeReducer"
+import rootReducers from './reducers'; 
 const middleware = [];
 
 const enhancers = [applyMiddleware(...middleware)];

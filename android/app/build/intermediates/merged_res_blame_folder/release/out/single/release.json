@@ -1,11 +1,23 @@
 [
     {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnativeratings_dist_images_star.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnativeratings_dist_images_star.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-xhdpi\\node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png"
+    },
+    {
         "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-hdpi\\node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png"
     },
     {
         "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher.png.flat",
@@ -28,15 +40,51 @@
         "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnativeratings_dist_images_airbnbstarselected.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnativeratings_dist_images_airbnbstarselected.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnativeratings_dist_images_bell.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnativeratings_dist_images_bell.png"
+    },
+    {
         "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnativeratings_dist_images_airbnbstar.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnativeratings_dist_images_airbnbstar.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-xxhdpi\\node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-xxxhdpi\\node_modules_reactnavigationstack_lib_module_vendor_views_assets_backicon.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnavigationstack_lib_module_vendor_views_assets_backiconmask.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnavigationstack_lib_module_vendor_views_assets_backiconmask.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnativeratings_dist_images_heart.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnativeratings_dist_images_heart.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_node_modules_reactnativeratings_dist_images_rocket.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\generated\\res\\react\\release\\drawable-mdpi\\node_modules_reactnativeratings_dist_images_rocket.png"
+    },
+    {
+        "merged": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Learn\\amservices\\sampleapp\\firstapp\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     }
 ]

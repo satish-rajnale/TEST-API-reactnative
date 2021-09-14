@@ -6,6 +6,7 @@ import {Provider, useDispatch, useSelector} from 'react-redux';
 import Loader from './src/views/Loader';
 import {SafeAreaView, Text} from 'react-native';
 import axios from 'axios';
+import {Button} from 'react-native-elements';
 const store = configureStore;
 const Appcontainer = createAppContainer(AppNavigator);
 
@@ -13,46 +14,49 @@ const App = () => {
   const [state, setState] = useState([]);
   const [isfetched, setisfetched] = useState(false);
   const [loading, setloading] = useState(true);
-  const mainData = useSelector((state) => state.countReducer.mainData);
+  const mainData = useSelector(state => state.countReducer.mainData);
   const dispatch = useDispatch();
-  useEffect(() => {
-    console.log('fetching');
-    axios.get('http://192.168.1.106:4000/tshirt/')
+
+  const getData = () => {
+    axios
+      .get('https://fakestoreapi.com/products')
       .then(res => res.data)
       .then(data => {
         if (data && data.length > 0) {
-          console.log('data');
           setState(data);
           setisfetched(true);
         }
       })
-      .catch((err)=> {
-          console.log(err);
-          setloading(false)
-      })
-      ;
+      .catch(err => {
+        console.log(err);
+        setloading(false);
+      });
+  };
+  useEffect(() => {
+    getData();
   }, []);
   useEffect(() => {
-      if(isfetched){
-    dispatch({
-      type: 'STORE_MAIN_DATA',
-      payload: state,
-    });
-    if(mainData.length != 0){
+    if (isfetched) {
+      dispatch({
+        type: 'STORE_MAIN_DATA',
+        payload: state,
+      });
+      if (mainData.length != 0) {
         setloading(false);
-    }}
-
-    
-  }, [state,mainData,isfetched]);
+      }
+    }
+  }, [state, mainData, isfetched]);
   return (
-    <SafeAreaView style={{ flex: 1,}}>
+    <SafeAreaView style={{flex: 1}}>
       {loading ? (
         <Loader />
-      ) : ( isfetched ? 
+      ) : isfetched ? (
         <Provider store={store}>
           <Appcontainer />
         </Provider>
-      : <Text>Retry</Text>) }
+      ) : (
+        <Button title="Retry" onPress={() => getData()} />
+      )}
     </SafeAreaView>
   );
 };

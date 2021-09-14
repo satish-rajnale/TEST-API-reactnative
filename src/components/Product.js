@@ -10,66 +10,44 @@ import {
 import {Card, Button, Image, Input} from 'react-native-elements';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {withNavigation} from 'react-navigation';
-import { ReactReduxContext, useDispatch, useSelector } from 'react-redux'
- 
-function Product({item, withclosebutton,setModalVisible,updateCartCount}) {
+import {ReactReduxContext, useDispatch, useSelector} from 'react-redux';
+
+function Product({item, withclosebutton, setModalVisible, updateCartCount}) {
   const [productCount, setProductCount] = useState('0');
   const dispatch = useDispatch();
-  const store = useSelector((state) => state.countReducer.cart.filter((obj) => obj.id == item.id));
-  
+  const store = useSelector(state =>
+    state.countReducer.cart.filter(obj => obj.id == item.id),
+  );
+
   useEffect(() => {
-    if(store.length != 0){
+    if (store.length != 0) {
       setProductCount(store[0].count);
-    };
+    }
   }, [store]);
 
-
-//   handleProductCount =(action) => {
-//     const filteredCart = this.state.cartCount.findIndex((obj) => obj.id == action.id);
-//      switch(action.type){
-//        case "INCREMENT":
-       
-//         if(filteredCart != -1){
-//           let newVal =  Number.parseInt(action.prevCount)+1;
-//           this.setState({cartCount: cartCount[filteredCart].count = newVal});
-//           console.log(this.state.cartCount);
-//           return newVal.toString();
-//         }
-//         this.setState(cartCount.push({id: action.id, count:1}));
-//          return (Number.parseInt(action.prevCount)+1).toString();
-//        case "DECREMENT":
-//          console.log(Number.parseInt(action.prevCount) == NaN )
-//         if(Number.parseInt(action.prevCount) == 0 || Number.parseInt(action.prevCount) == "NaN"){
-//           return;
-//         }
-//         let newVal =  Number.parseInt(action.prevCount)-1;
-//         const newArr =  this.state.cartCount.map((obj, index) =>{ if(index == filteredCart){obj.count = newVal}; return obj});
-//         this.setState({...this.state,cartCount : newArr});
-//         console.log(this.state.cartCount);
-//         return newVal.toString();
-//      }
-   
-//    };
   return (
     <View style={styles.wrapper}>
       <View style={styles.imageWrapper}>
         <Image style={styles.image} source={{uri: item.image}} />
       </View>
       <View style={styles.rightContent}>
-        <View style={styles.title, {display : "flex", flexDirection:"row"}}>
-        <Text numberOfLines={2} style={{width:150}}>
-          {item.title}
-        </Text>
-        {
-          withclosebutton ? ( <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.7}
-          onPress={() =>setModalVisible(item.id)
-            
-          }>
-          <Icon name="delete" type="material-icons" color='#ff8080' size={20} />
-        </TouchableOpacity>) : null
-        }
+        <View style={(styles.title, {display: 'flex', flexDirection: 'row'})}>
+          <Text numberOfLines={2} style={{width: 150}}>
+            {item.title}
+          </Text>
+          {withclosebutton ? (
+            <TouchableOpacity
+              style={styles.button}
+              activeOpacity={0.7}
+              onPress={() => setModalVisible(item.id)}>
+              <Icon
+                name="delete"
+                type="material-icons"
+                color="#ff8080"
+                size={20}
+              />
+            </TouchableOpacity>
+          ) : null}
         </View>
         <View
           style={[
@@ -93,11 +71,11 @@ function Product({item, withclosebutton,setModalVisible,updateCartCount}) {
               activeOpacity={0.7}
               onPress={() => {
                 dispatch({
-                  type : "REDUCE_COUNT",
-                  id : item.id
+                  type: 'REDUCE_COUNT',
+                  id: item.id,
                 });
                 dispatch({
-                  type: "SET_SUBTOTAL"
+                  type: 'SET_SUBTOTAL',
                 });
                 updateCartCount();
               }}>
@@ -125,13 +103,12 @@ function Product({item, withclosebutton,setModalVisible,updateCartCount}) {
               onPress={() => {
                 updateCartCount();
                 dispatch({
-                  type : "INCREMENT_COUNT",
-                  id : item.id
+                  type: 'INCREMENT_COUNT',
+                  id: item.id,
                 });
                 dispatch({
-                  type: "SET_SUBTOTAL"
+                  type: 'SET_SUBTOTAL',
                 });
-                //setProductCount(() => setProductCount(handleProductCount({type: "INCREMENT",prevCount:productCount, id:item.id})));
               }}>
               <Icon name="plus" type="font-awesome" size={20} />
             </TouchableOpacity>
@@ -175,8 +152,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     marginHorizontal: 13,
     width: '92%',
-    elevation:10,
-    borderRadius:5
+    elevation: 10,
+    borderRadius: 5,
   },
   imageWrapper: {
     marginRight: 10,
